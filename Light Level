@@ -5,9 +5,9 @@
     int main()
     {
         // setup pins
-        const uint RED_PIN = 7;
-        const uint YELLOW_PIN = 8;
-        const uint GREEN_PIN = 9;
+        const uint RED_PIN = 2;
+        const uint YELLOW_PIN = 3;
+        const uint GREEN_PIN = 4;
         const uint ADC_LIGHT = 26;
         uint traffic_light[] = {RED_PIN, YELLOW_PIN, GREEN_PIN};
         stdio_init_all();
@@ -30,13 +30,13 @@
             float val = result * conversion_factor;
             printf("Raw value: 0x%03x, light percent: %f %\n", result, val);
 
-            if (val < 40)
+            if (val < 2.0)
             {
                 gpio_put(GREEN_PIN, 1);
                 gpio_put(RED_PIN, 0);
                 gpio_put(YELLOW_PIN, 0);
             }
-            else if (val < 60)
+            else if (val < 1.45)
             {
                 gpio_put(GREEN_PIN, 0);
                 gpio_put(RED_PIN, 0);
@@ -53,6 +53,5 @@
         }
     }
 
-เขียนถึง
 
 
