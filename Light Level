@@ -30,13 +30,13 @@
             float val = result * conversion_factor;
             printf("Raw value: 0x%03x, light percent: %f %\n", result, val);
 
-            if (val < 1.50)
+            if (val < 40)
             {
                 gpio_put(GREEN_PIN, 1);
                 gpio_put(RED_PIN, 0);
                 gpio_put(YELLOW_PIN, 0);
             }
-            else if (val < 2.0)
+            else if (val < 60)
             {
                 gpio_put(GREEN_PIN, 0);
                 gpio_put(RED_PIN, 0);
