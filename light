@@ -1,0 +1,57 @@
+#include "pico/stdlib.h"
+
+int main() {
+    // setup pins
+    const uint RED_PIN = 11;
+    const uint YELLOW_PIN = 14;
+    const uint GREEN_PIN = 13;
+    uint traffic_light[]= {RED_PIN, YELLOW_PIN, GREEN_PIN };
+    for(int i=0; i<3; i++){
+        gpio_init(traffic_light[i]);
+        gpio_set_dir(traffic_light[i], GPIO_OUT);
+    }
+    
+// loop blink
+    while (true) {
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+    }
+}
