@@ -13,7 +13,7 @@ int main() {
     gpio_pull_up(SW_PIN);
 
     for(int i=0; i<3; i++){
-        gpio_init(traffic_light[i]);
+        gpio_init(traffic_light[i]);const uint SW_PIN = 6;
         gpio_set_dir(traffic_light[i], GPIO_OUT);
     }
 
