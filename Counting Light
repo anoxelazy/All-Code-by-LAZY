@@ -12,55 +12,46 @@ int main() {
     }
 
     // loop blink
-    uint count = 0;
     while (true) {
-        if(count == 0 ){
-            gpio_put(RED_PIN, 0);
-            gpio_put(YELLOW_PIN, 0);
-            gpio_put(GREEN_PIN, 0);
-        }
-        if(count == 1 ){
-            gpio_put(RED_PIN, 1);
-            gpio_put(YELLOW_PIN, 0);
-            gpio_put(GREEN_PIN, 0);
-        }
-        if(count == 2){
-            gpio_put(RED_PIN, 0);
-            gpio_put(YELLOW_PIN, 1);
-            gpio_put(GREEN_PIN, 0);
-        }
-        if(count == 3){
-            gpio_put(RED_PIN, 1);
-            gpio_put(YELLOW_PIN, 1);
-            gpio_put(GREEN_PIN, 0);
-        }
-        if(count == 4){
-            gpio_put(RED_PIN, 0);
-            gpio_put(YELLOW_PIN, 0);
-            gpio_put(GREEN_PIN, 1);
-        }
-        if(count == 5){
-            gpio_put(RED_PIN, 1);
-            gpio_put(YELLOW_PIN, 0);
-            gpio_put(GREEN_PIN, 1);
-        }
-        if(count == 6){
-            gpio_put(RED_PIN, 0);
-            gpio_put(YELLOW_PIN, 1);
-            gpio_put(GREEN_PIN, 1);
-        }
-        if(count == 7){
-            gpio_put(RED_PIN, 1);
-            gpio_put(YELLOW_PIN, 1);
-            gpio_put(GREEN_PIN, 1);
-        }
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
 
-        if (!gpio_get(SW_PIN)) {
-            count++;
-            sleep_ms(500);
-        }
-        if(count > 7){
-            count = 0;
-        }
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 0);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 0);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 0);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
+        gpio_put(RED_PIN, 1);
+        gpio_put(YELLOW_PIN, 1);
+        gpio_put(GREEN_PIN, 1);
+        sleep_ms(500);
+
     }
 }
