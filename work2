@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include "hardware/adc.h"
+
+const uint RED_PIN = 11;
+const uint YELLOW_PIN = 14;
+const uint GREEN_PIN = 13;
+uint traffic_light[]= {RED_PIN, YELLOW_PIN, GREEN_PIN };
+void init_io(){
+    stdio_init_all();
+    adc_init();
+    adc_gpio_init(28);
+    adc_select_input(2);
+    for(int i=0; i<3; i++){
+        gpio_init(traffic_light[i]);
+        gpio_set_dir(traffic_light[i], GPIO_OUT);
+    }
+    gpio_init(SW_PIN);
+    gpio_set_dir(SW_PIN, GPIO_IN);
+    gpio_pull_up(SW_PIN);
+ }
+ void clear(){
+    for(int i=0; i<3; i++){
+        gpio_put(traffic_light[i], 0);
+    }
+ }
+ 
+ // define interrupt handling function
+void gpio_callback(uint gpio, uint32_t events) {
+    gpio_acknowledge_irq(gpio, events);
+    if(gpio_get()==0){
+        printf("Press");
+    }else{
+        printf("Release");
+        
