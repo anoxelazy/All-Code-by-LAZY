@@ -6,6 +6,7 @@
 const uint RED_PIN = 11;
 const uint YELLOW_PIN = 14;
 const uint GREEN_PIN = 13;
+count uint SW_PIN = 15;
 uint traffic_light[]= {RED_PIN, YELLOW_PIN, GREEN_PIN };
 void init_io(){
     stdio_init_all();
