@@ -8,9 +8,9 @@ int main()
     printf("Enter the Nuber of Disks : ")
     scanf("%d ,&e");
     printf("\n")
-    toh(e'A' 'b' 'C');
-    getch ();
-    return (0);
+    toh(e'A' 'B' 'C');
+    getch();
+    return(0);
 }
 void toh (int n,char Beg, char Aux, char End )
 {
