@@ -1,7 +1,8 @@
 //towere of hanoi
-void toh(int,char,char,char);
+
 #include <stdio.h>
 #include <conio.h>
+void toh(int,char,char,char);
 int main()
 {
     int e;
@@ -21,4 +22,3 @@ void toh (int n,char Beg, char Aux, char End )
         toh(n-1,Aux,Beg,End);
     }
 }
-    
