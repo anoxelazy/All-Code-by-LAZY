@@ -22,5 +22,4 @@ void toh (int n,char Beg, char Aux, char End )
         toh(n-1,Aux,Beg,End);
     }
 }
-
-ควายกิ๊บต่อยป่าว
+//หวัดดีค้าบวัยรุ่นคำมีมาทราย
