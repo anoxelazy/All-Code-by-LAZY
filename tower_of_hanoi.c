@@ -1,4 +1,6 @@
-//towere of hanoi
+//tower of hanoi
+//หวัดดีค้าบวัยรุ่นสโม๊คำมีคำซาย
+//วางจานข้าวลงถ้าไม่อยากแดกคำมีมาซายกู
 
 #include <stdio.h>
 #include <conio.h>
@@ -22,4 +24,3 @@ void toh (int n,char Beg, char Aux, char End )
         toh(n-1,Aux,Beg,End);
     }
 }
-//หวัดดีค้าบวัยรุ่นคำมีมาทราย
