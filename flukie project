@@ -26,7 +26,7 @@ void init_io(){
         gpio_put(traffic_light[i], 0);
     }
  }
- 
+ {
 void gpio_callback(uint gpio, uint32_t events) {
     gpio_acknowledge_irq(gpio, events);
     if(gpio_get()==0){
@@ -36,7 +36,7 @@ void gpio_callback(uint gpio, uint32_t events) {
         }
  }
  
-  while (true) {
+while (true) {
         gpio_put(GREEN_PIN, 0);
         gpio_put(RED_PIN, 1);
         sleep_ms(500);
@@ -47,19 +47,17 @@ void gpio_callback(uint gpio, uint32_t events) {
         gpio_put(GREEN_PIN, 1);
         sleep_ms(500);
     }
-    
-   int main(){
+
+int main() {
         stdio_init_all();
         gpio_init(RED_PIN);
         gpio_set_dir(RED_PIN, GPIO_OUT);
         gpio_init(SW_PIN);
         gpio_set_dir(SW_PIN, GPIO_IN);
-        gpio_pull_up(SW_PIN);
+        gpio_pull_up(SW_PIN);  
+        }
+    sleep_ms(5000);
+ }
         
 // attach an interrupt to pin
-    gpio_set_irq_enabled_with_callback(SW_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
-    
-
-   
-
- 
+    //gpio_set_irq_enabled_with_callback(SW_PIN, GPIO_IRQ_EDGE_FALL|, true, &gpio_callback);
