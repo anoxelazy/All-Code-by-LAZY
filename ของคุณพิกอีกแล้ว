@@ -14,3 +14,31 @@
  }else{ elseคือฟังก์ชันข้างบนไม่เป็นไปตามif
  digital.Write(led,0); อ่านค่าไฟปิด
  led_status = 0; ไฟดับ
+ 
+ 
+ 
+ 
+ เวอร์ชันปรับปรุง
+ 
+ int sw = A0;                  //อันนี้เราประกาศตัวแปลขึ้นมาเป็นintสวิตซ์
+int led = A8;                 //นี่คือประกาศตัวแปลint led
+int led_status = 0;           //นี่คือบอกว่าledสถานะจะเป็น0คือปิด
+void setup() {                //ฟังก์ชันที่ใช้แล้วจะไม่สทมารถรีเทิร์นค่ากลับได้
+  pinMode(sw, INPUT_PULLUP);  //สวิตซ์เปิด
+  pinMode(led, OUTPUT);       //สวิตซ์ปิด
+}
+
+void loop() {  //ฟังก์ชันทำงานในตัวกรอบของวงเล็บปีกกา
+
+  if (digitalRead(sw) == 0) {  //ฟังก์ชันifเมื่ออ่านค่าสวิตซ์
+    if (led_status == 0) {      //ฟังก์ชันifเมื่ออ่านค่าled
+      digitalWrite(led, 1);    //อ่านค่าเปิดไฟled=1
+      led_status = 1;           //ไฟเปิด
+    } else {                    //elseคือฟังก์ชันข้างบนไม่เป็นไปตามif
+      digitalWrite(led, 0);    //อ่านค่าไฟปิด
+      led_status = 0;
+    }
+    delay(250);
+  }
+}
+
