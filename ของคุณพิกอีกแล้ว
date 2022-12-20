@@ -1,16 +1,16 @@
- int sw = ;
- int led = ;
- int led_status = 0;
- void setup() {
- pinMode(sw,INPUT_PULLUP);
- pinMode(led,OUTPUT);
+ int sw = ;   อันนี้เราประกาศตัวแปลขึ้นมาเป็นintสวิตซ์
+ int led = ;    นี่คือประกาศตัวแปลint led 
+ int led_status = 0;  นี่คือบอกว่าledสถานะจะเป็น0คือปิด
+ void setup() { ฟังก์ชันที่ใช้แล้วจะไม่สทมารถรีเทิร์นค่ากลับได้
+ pinMode(sw,INPUT_PULLUP);  สวิตซ์เปิด
+ pinMode(led,OUTPUT); สวิตซ์ปิด
  }
  
- void loop() {
- if(digital.Read(sw)==0){
- if(led_status==0){
- digital.Write(led,1);
- led_status = 1;
+ void loop() { ฟังก์ชันทำงานในตัวกรอบของวงเล็บปีกกา
+ if(digital.Read(sw)==0){ ฟังก์ชันifเมื่ออ่านค่าสวิตซ์
+ if(led_status==0){ ฟังก์ชันifเมื่ออ่านค่าled
+ digital.Write(led,1); เปิดไฟled=1
+ led_status = 1; 
  }else{
  digital.Write(led,0);
  led_status = 0;
