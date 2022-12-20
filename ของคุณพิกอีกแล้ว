@@ -9,8 +9,8 @@
  void loop() { ฟังก์ชันทำงานในตัวกรอบของวงเล็บปีกกา
  if(digital.Read(sw)==0){ ฟังก์ชันifเมื่ออ่านค่าสวิตซ์
  if(led_status==0){ ฟังก์ชันifเมื่ออ่านค่าled
- digital.Write(led,1); เปิดไฟled=1
- led_status = 1; 
- }else{
- digital.Write(led,0);
- led_status = 0;
+ digital.Write(led,1); อ่านค่าเปิดไฟled=1
+ led_status = 1; ไฟเปิด
+ }else{ elseคือฟังก์ชันข้างบนไม่เป็นไปตามif
+ digital.Write(led,0); อ่านค่าไฟปิด
+ led_status = 0; ไฟดับ
