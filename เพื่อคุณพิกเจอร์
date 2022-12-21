@@ -11,3 +11,27 @@ void loop() {
  Serial.println(sensorValue);
  }
  
+
+แก้แล้วอิๆ
+int counter = 0; 
+int sensorPin = A0; 
+int ledPin = 13; 
+
+void setup() {
+  Serial.begin(9600);
+  
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+  if (sensorValue > 500) {
+    counter++;
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+  
+  Serial.println(counter);
+  delay(300);
+}
