@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace FunctionTest
 {
-    internal class Class1
+    class Class1
     {
+        static void Main(string[] args)
+        { 
         Mydatabase mdb1 = new Mydatabase();
         mdb1.ShowCustomer();
 
-        Mydatabase mdb2 = new Mydatabase(101, "Miss tThailand", "5Thai Rd.");
+        Mydatabase mdb2 = new Mydatabase(101, "Miss Thailand", "5Thai Rd.");
         mdb2.ShowCustomer();
+        }
     }
 }
