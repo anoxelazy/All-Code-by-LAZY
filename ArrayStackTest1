@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArrayStackTest
+{
+    public class ArrayStackTest
+    {
+        public static void Main(string[] args)
+        {
+            ArrayStackTest stack = new ArrayStack(10);
+            for (int i = 0; i < 10; i++)
+            {
+                string objToPush = "obj" + i;
+                Console.WriteLine("pushing: {0}", objToPush);
+                stack.push(objToPush);
+
+
+            }
+            while (!stack.isEmpty())
+            {
+                string objPopad = (string)stack.pop();
+                Console.WriteLine("poping: {0}", objPoped);
+            }
+
+        }
+    }
+}
