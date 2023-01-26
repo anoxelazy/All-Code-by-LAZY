@@ -10,7 +10,7 @@ namespace ArrayStackTest
     {
         public static void Main(string[] args)
         {
-            ArrayStackTest stack = new ArrayStack(10);
+            ArrayStack stack = new ArrayStack(10);
             for (int i = 0; i < 10; i++)
             {
                 string objToPush = "obj" + i;
@@ -21,7 +21,7 @@ namespace ArrayStackTest
             }
             while (!stack.isEmpty())
             {
-                string objPopad = (string)stack.pop();
+                string objPoped = (string)stack.pop();
                 Console.WriteLine("poping: {0}", objPoped);
             }
 
