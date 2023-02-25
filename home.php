@@ -40,15 +40,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <button type="submit">ฝากเงิน</button><br><br>
             <label for="ถอนเงิน">จำนวนเงินที่ถอน:</label>
             <input type="number" name="ถอนเงิน">
-            <button type="submit">ถอนเงิน</button><br>
-         </form><br>
+            <button type="submit">ถอนเงิน</button><br><br><br><br>
+         
          <a href="logout.php">ออกจากระบบ</a>
+         <a href="transcript.php">บันทึกการฝากถอน</a>
+         </form><br>
     </body>
     </html>
-
-    <?php 
-} else {
-     header("Location: index.php");
-     exit();
-}
-?>
