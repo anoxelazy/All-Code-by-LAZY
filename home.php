@@ -32,17 +32,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </head>
     <body>
          <h1>ธนาคารบ้านหนองคิโมจิ</h1>
-         <h2>บัญชีของคุณโอมคนจนกินบ่นกบ <?php echo $name; ?></h2>
-         <p>ยอดเงินปัจจุบัน : <?php echo $balance_display; ?></p>
+         <h2>บัญชีของคุณ <?php echo $name; ?></h2>
+         <h3>ยอดเงินปัจจุบัน : <?php echo $balance_display; ?></h3>
          <form method="post">
             <label for="ฝากเงิน">จำนวนเงินฝาก:</label>
             <input type="number" name="ฝากเงิน">
-            <button type="submit">ฝากเงิน</button>
-         </form>
-         <form method="post">
+            <button type="submit">ฝากเงิน</button><br><br>
             <label for="ถอนเงิน">จำนวนเงินที่ถอน:</label>
             <input type="number" name="ถอนเงิน">
-            <button type="submit">ถอนเงิน</button>
+            <button type="submit">ถอนเงิน</button><br>
          </form><br>
          <a href="logout.php">ออกจากระบบ</a>
     </body>
