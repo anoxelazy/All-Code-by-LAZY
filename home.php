@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     $name = $_SESSION['name'];
     $balance = 0;
-
+}
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['ฝากเงิน'])) {
             $deposit_amount = floatval($_POST['ฝากเงิน']);
