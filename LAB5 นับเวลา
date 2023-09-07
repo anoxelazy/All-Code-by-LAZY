@@ -1,0 +1,112 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.std_logic_unsigned.ALL;
+ENTITY seven_segment_display_VHDL IS
+    PORT (clock_50Mhz : IN STD_LOGIC;-- 50Mhz clock on AX309 FPGA board
+        reset : IN STD_LOGIC; -- reset
+        Anode_Activate : OUT STD_LOGIC_VECTOR (5 DOWNTO 0);-- 6 Anode signals
+        LED_out : OUT STD_LOGIC_VECTOR (6 DOWNTO 0));-- Cathode patterns of 7-segment display
+END seven_segment_display_VHDL;
+    ARCHITECTURE Behavioral OF seven_segment_display_VHDL IS
+    SIGNAL one_second_counter : STD_LOGIC_VECTOR (27 DOWNTO 0);
+    -- counter for generating 1-second clock enable
+    SIGNAL one_second_enable : STD_LOGIC;
+    -- one second enable for counting numbers
+    SIGNAL displayed_number : STD_LOGIC_VECTOR (15 DOWNTO 0);
+    -- counting decimal number to be displayed on 4-digit 7-segment display
+	 SIGNAL LED_BCD : STD_LOGIC_VECTOR (3 DOWNTO 0);
+    SIGNAL TEMP_BCD : STD_LOGIC_VECTOR (3 DOWNTO 0);
+    SIGNAL refresh_counter : STD_LOGIC_VECTOR (18 DOWNTO 0);
+    -- creating 10.5ms refresh period
+    SIGNAL LED_activating_counter : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    -- the other 2-bit for creating 4 LED-activating signals
+    -- count 0 -> 1 -> 2 -> 3
+    -- activates LED1 LED2 LED3 LED4
+    -- and repeat
+BEGIN
+ PROCESS (LED_BCD)
+    BEGIN
+        CASE LED_BCD IS
+            WHEN "0000" => LED_out <= "0000001"; -- "0"
+            WHEN "0001" => LED_out <= "1001111"; -- "1"
+            WHEN "0010" => LED_out <= "0010010"; -- "2"
+            WHEN "0011" => LED_out <= "0000110"; -- "3"
+            WHEN "0100" => LED_out <= "1001100"; -- "4"
+            WHEN "0101" => LED_out <= "0100100"; -- "5"
+            WHEN "0110" => LED_out <= "0100000"; -- "6"
+				WHEN "0111" => LED_out <= "0001111"; -- "7"
+            WHEN "1000" => LED_out <= "0000000"; -- "8"
+            WHEN "1001" => LED_out <= "0000100"; -- "9"
+            WHEN OTHERS => LED_out <= "1111111";
+        END CASE;
+    END PROCESS;
+PROCESS (clock_50Mhz, reset)
+    BEGIN
+        IF (reset = '0') THEN
+            refresh_counter <= (OTHERS => '0');
+        ELSIF (rising_edge(clock_50Mhz)) THEN
+            refresh_counter <= refresh_counter + 1;
+        END IF;
+    END PROCESS;
+  LED_activating_counter <= refresh_counter(18 DOWNTO 17);
+    -- 4-to-1 MUX to generate anode activating signals for 4 LEDs
+    PROCESS (LED_activating_counter)
+    BEGIN
+        CASE LED_activating_counter IS
+            WHEN "00" =>
+                Anode_Activate <= "110111";
+                LED_BCD <= displayed_number(15 DOWNTO 12);
+            WHEN "01" =>
+                Anode_Activate <= "111011";
+                LED_BCD <= displayed_number(11 DOWNTO 8);
+            WHEN "10" =>
+				    Anode_Activate <= "111101";
+                LED_BCD <= displayed_number(7 DOWNTO 4);
+            WHEN "11" =>
+                Anode_Activate <= "111110";
+                LED_BCD <= displayed_number(3 DOWNTO 0);
+            WHEN OTHERS => NULL;
+ END CASE;
+    END PROCESS;
+    PROCESS (clock_50Mhz, reset)
+    BEGIN
+        IF (reset = '0') THEN
+            one_second_counter <= (OTHERS => '0');
+        ELSIF (rising_edge(clock_50Mhz)) THEN
+            IF (one_second_counter >= x"2FAF07F") THEN
+                one_second_counter <= (OTHERS => '0');
+ ELSE
+                one_second_counter <= one_second_counter + "0000001";
+            END IF;
+        END IF;
+    END PROCESS;
+    one_second_enable <= '1' WHEN one_second_counter = x"2FAF07F" ELSE
+        '0';
+    PROCESS (clock_50Mhz, reset)
+    BEGIN
+	 
+  IF (reset = '0') THEN
+            displayed_number <= (OTHERS => '0');
+        ELSIF (rising_edge(clock_50Mhz)) THEN
+            IF (one_second_enable = '1') THEN
+                displayed_number <= displayed_number + x"0001";
+                TEMP_BCD <= displayed_number(3 DOWNTO 0);
+                IF (TEMP_BCD = x"A") THEN
+                    displayed_number <= displayed_number + x"0006";
+                END IF;
+					 TEMP_BCD <= displayed_number(7 DOWNTO 4);
+                IF (TEMP_BCD = x"A") THEN
+                    displayed_number <= displayed_number + x"0060";
+                END IF;
+                TEMP_BCD <= displayed_number(11 DOWNTO 8);
+                IF (TEMP_BCD = x"A") THEN
+                    displayed_number <= displayed_number + x"0600";
+                END IF;					 
+					  TEMP_BCD <= displayed_number(15 DOWNTO 12);
+                IF (TEMP_BCD = x"A") THEN
+                    displayed_number <= displayed_number + x"6000";
+                END IF;
+            END IF;
+        END IF;
+    END PROCESS;
+END Behavioral;
