@@ -1,0 +1,66 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    08:55:56 08/31/2023 
+-- Design Name: 
+-- Module Name:    COUNT_4BIT - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity COUNTER_4BIT_SNYC_UP is
+    Port ( Clock,Clear : in  STD_LOGIC;
+           Q0,Q1,Q2,Q3 : out  STD_LOGIC);
+end COUNTER_4BIT_SNYC_UP;
+
+architecture Behavioral of COUNTER_4BIT_SNYC_UP is
+	signal Qt : STD_LOGIC_VECTOR (3 downto 0):="0000";
+	--signal T0,T1,T2,T3 : STD_LOGIC;
+	--signal Q0T,Q1T,Q2T,Q3T : STD_LOGIC;
+	--component TFF
+		--port (C,CLR,T : in STD_LOGIC;
+			 --Q : out STD_LOGIC);
+	--end component;
+begin
+process(Clock,Clear)
+begin if Clear='1' then QT <= "0000";
+elsif Clock'event and Clock='1' then QT <= QT + 1;
+end if;
+end process;
+Q0 <= QT(0); Q1 <= QT(1); Q2 <= Qt(2); Q3 <= QT(3);
+		--T0 <= '1';
+--BIT_0 : TFF port map ( C=>Clock,CLR=>Clear,T=>T0,Q=>Q0T);
+		--T1 <= Q0T;
+--BIT_1 : TFF port map ( C=>Clock,CLR=>Clear,T=>T1,Q=>Q1T);
+		--T2<=  Q1T and T1;
+--BIT_2 : TFF port map ( C=>Clock,CLR=>Clear,T=>T2,Q=>Q2T);
+		--T3 <= Q2T and T2;
+--BIT_3 : TFF port map ( C=>Clock,CLR=>Clear,T=>T3,Q=>Q3T);
+		--Q0 <= Q0T;
+		--Q1 <= Q1T;
+		--Q2 <= Q2T;
+		--Q3 <= Q3t;
+end Behavioral;
+
